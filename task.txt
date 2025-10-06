@@ -103,3 +103,233 @@ INSERT INTO order_items (order_id, product_id, quantity, unit_price) VALUES
 -- =====================================================================
 -- END OF FILE
 -- =====================================================================
+# 🛒 E-Commerce Sales Analysis - SQL Tasks
+
+## 📊 Task 1: Basic Aggregate Functions
+
+### Task 1.1: Overall Business Metrics
+```sql
+-- Calculate key business metrics:
+-- Total number of orders, total revenue, average order value,
+-- smallest and largest order amounts
+-- Your SQL here...
+```
+
+### Task 1.2: Product Performance Summary
+```sql
+-- Analyze product performance:
+-- Total number of products, average price, most expensive product,
+-- least expensive product, total inventory value
+-- Your SQL here...
+```
+
+## 📈 Task 2: GROUP BY Operations
+
+### Task 2.1: Sales Analysis by Customer City
+```sql
+-- Group sales data by customer city and show:
+-- City name, number of customers, total revenue generated
+-- Order by total revenue descending
+-- Your SQL here...
+```
+
+### Task 2.2: Revenue by Product Category
+```sql
+-- Analyze revenue distribution across product categories:
+-- Category name, number of items sold, total revenue
+-- Include only categories with sales
+-- Your SQL here...
+```
+
+### Task 2.3: Monthly Sales Trend
+```sql
+-- Create monthly sales report:
+-- Year, month, number of orders, total monthly revenue
+-- Order chronologically
+-- Your SQL here...
+```
+
+## 🎯 Task 3: HAVING Clause Challenges
+
+### Task 3.1: High-Value Customers
+```sql
+-- Identify high-value customers (spent over $1000):
+-- Customer name, number of orders, total amount spent
+-- Your SQL here...
+```
+
+### Task 3.2: Premium Product Categories
+```sql
+-- Find categories where average product price exceeds $500:
+-- Category name, average price, number of products
+-- Your SQL here...
+```
+
+### Task 3.3: Active Customer Cities
+```sql
+-- Identify cities with more than 1 active customer:
+-- City name, number of active customers
+-- Your SQL here...
+```
+
+### Task 3.4: Popular Products
+```sql
+-- Find products that have sold more than 2 units:
+-- Product name, total quantity sold, total revenue
+-- Your SQL here...
+```
+
+## 🔄 Task 4: ROLLUP Operations
+
+### Task 4.1: Hierarchical Sales Summary
+```sql
+-- Create a hierarchical sales report using ROLLUP:
+-- Category → Product → Summary levels
+-- Show category, product, total quantity, total revenue
+-- Your SQL here...
+```
+
+### Task 4.2: Customer Geographic Analysis
+```sql
+-- Analyze sales by city and customer using ROLLUP:
+-- City → Customer → Summary levels
+-- Show city, customer name, order count, total spent
+-- Your SQL here...
+```
+
+## 🎲 Task 5: CUBE Operations (Simulated)
+
+### Task 5.1: Multi-dimensional Sales Analysis
+```sql
+-- Simulate CUBE operation to get all combinations:
+-- Category × Product sales analysis
+-- Include all subtotals and grand total
+-- Your SQL here...
+```
+
+### Task 5.2: Time × Category Analysis
+```sql
+-- Analyze sales by month and category combinations:
+-- Show all possible aggregations
+-- Your SQL here...
+```
+
+## 💰 Task 6: Advanced Business Analytics
+
+### Task 6.1: Customer RFM Analysis
+```sql
+-- Perform RFM (Recency, Frequency, Monetary) analysis:
+-- Calculate days since last purchase, order frequency, total spending
+-- Segment customers into: VIP, Loyal, High Value, Regular
+-- Your SQL here...
+```
+
+### Task 6.2: Monthly Growth Analysis
+```sql
+-- Calculate month-over-month growth percentages:
+-- Show monthly revenue and growth compared to previous month
+-- Your SQL here...
+```
+
+### Task 6.3: Inventory Management Report
+```sql
+-- Create stock analysis with reorder recommendations:
+-- Current stock, total sold, stock value, reorder status
+-- Your SQL here...
+```
+
+## 📊 Task 7: Window Functions for Advanced Analytics
+
+### Task 7.1: Running Totals and Moving Averages
+```sql
+-- Calculate running totals and 3-day moving averages:
+-- Show date, daily revenue, running total, moving average
+-- Your SQL here...
+```
+
+### Task 7.2: Revenue Ranking Analysis
+```sql
+-- Rank orders, customers, and products by revenue:
+-- Show rankings within their respective groups
+-- Your SQL here...
+```
+
+### Task 7.3: Customer Lifetime Value
+```sql
+-- Calculate customer lifetime value metrics:
+-- Total spent, average order value, monthly value projection
+-- Your SQL here...
+```
+
+## 🚀 Task 8: Performance Optimization
+
+### Task 8.1: Query Performance Analysis
+```sql
+-- Write optimized versions of previous queries
+-- Use proper indexing strategies
+-- Analyze query execution plans
+-- Your SQL here...
+```
+
+### Task 8.2: Complex Business Intelligence Query
+```sql
+-- Create a comprehensive business dashboard query:
+-- Include multiple aggregations, groupings, and filters
+-- Your SQL here...
+```
+
+## 🎯 Task 9: Real-time Business Scenarios
+
+### Task 9.1: Sales Commission Calculation
+```sql
+-- Calculate sales performance for commission:
+-- Group by sales period and product category
+-- Apply tiered commission rates using CASE statements
+-- Your SQL here...
+```
+
+### Task 9.2: Customer Retention Analysis
+```sql
+-- Analyze repeat customer behavior:
+-- Identify customers with multiple orders
+-- Calculate time between orders
+-- Your SQL here...
+```
+
+### Task 9.3: Product Performance Deep Dive
+```sql
+-- Comprehensive product analysis:
+-- Sales trends, inventory turnover, profitability
+-- Your SQL here...
+```
+
+## 📝 Task 10: Advanced Reporting
+
+### Task 10.1: Executive Summary Report
+```sql
+-- Create a single query that provides executive summary:
+-- Overall metrics, top performers, growth indicators
+-- Your SQL here...
+```
+
+### Task 10.2: Seasonal Sales Analysis
+```sql
+-- Analyze sales patterns by season/quarter:
+-- Compare performance across time periods
+-- Your SQL here...
+```
+
+## 💡 Tips for Success:
+
+1. **Start Simple**: Begin with basic aggregates before moving to complex groupings
+2. **Test Incrementally**: Build queries step by step
+3. **Verify Results**: Check that your numbers make business sense
+4. **Optimize**: Look for ways to make queries more efficient
+5. **Document**: Add comments to explain complex logic
+
+## 🎯 Expected Output Format:
+For each task, your query should return:
+- Clear column names with aliases
+- Properly formatted numbers (use ROUND where appropriate)
+- Meaningful sorting
+- Business-friendly result
