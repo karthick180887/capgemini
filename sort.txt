@@ -1,0 +1,26 @@
+-- Custom sorting logic
+SELECT product_name, category, amount
+FROM sales
+ORDER BY 
+    CASE 
+        WHEN category = 'Electronics' THEN 1
+        WHEN category = 'Furniture' THEN 2
+        ELSE 3
+    END,
+    amount DESC;
+
+-- Priority sorting
+SELECT product_name, amount,
+    CASE 
+        WHEN amount > 30000 THEN 'High'
+        WHEN amount > 10000 THEN 'Medium'
+        ELSE 'Low'
+    END AS priority
+FROM sales
+ORDER BY 
+    CASE 
+        WHEN amount > 30000 THEN 1
+        WHEN amount > 10000 THEN 2
+        ELSE 3
+    END,
+    product_name;
