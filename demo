@@ -1,0 +1,169 @@
+-- =====================================================================
+-- DATABASE: ecommerce_sales (Oracle 11g Compatible)
+-- =====================================================================
+
+-- NOTE: Oracle 11g doesn't support CREATE DATABASE or USE.
+-- Run this under your existing user/schema.
+
+-- =====================================================================
+-- DROP EXISTING TABLES (optional for re-runs)
+-- =====================================================================
+
+BEGIN
+    EXECUTE IMMEDIATE 'DROP TABLE order_items CASCADE CONSTRAINTS';
+    EXECUTE IMMEDIATE 'DROP TABLE orders CASCADE CONSTRAINTS';
+    EXECUTE IMMEDIATE 'DROP TABLE products CASCADE CONSTRAINTS';
+    EXECUTE IMMEDIATE 'DROP TABLE customers CASCADE CONSTRAINTS';
+EXCEPTION
+    WHEN OTHERS THEN NULL;
+END;
+/
+-- =====================================================================
+-- CREATE TABLES
+-- =====================================================================
+
+CREATE TABLE customers (
+    customer_id NUMBER PRIMARY KEY,
+    first_name VARCHAR2(50),
+    last_name VARCHAR2(50),
+    email VARCHAR2(100),
+    city VARCHAR2(50),
+    registration_date DATE
+);
+
+CREATE TABLE products (
+    product_id NUMBER PRIMARY KEY,
+    product_name VARCHAR2(100),
+    category VARCHAR2(50),
+    price NUMBER(10,2),
+    stock_quantity NUMBER
+);
+
+CREATE TABLE orders (
+    order_id NUMBER PRIMARY KEY,
+    customer_id NUMBER,
+    order_date DATE,
+    total_amount NUMBER(10,2),
+    status VARCHAR2(20),
+    CONSTRAINT fk_orders_customer FOREIGN KEY (customer_id)
+        REFERENCES customers(customer_id)
+);
+
+CREATE TABLE order_items (
+    order_item_id NUMBER PRIMARY KEY,
+    order_id NUMBER,
+    product_id NUMBER,
+    quantity NUMBER,
+    unit_price NUMBER(10,2),
+    CONSTRAINT fk_items_order FOREIGN KEY (order_id)
+        REFERENCES orders(order_id),
+    CONSTRAINT fk_items_product FOREIGN KEY (product_id)
+        REFERENCES products(product_id)
+);
+
+-- =====================================================================
+-- SEQUENCES FOR AUTO-INCREMENT
+-- =====================================================================
+
+CREATE SEQUENCE seq_customers START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE seq_products START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE seq_orders START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE seq_order_items START WITH 1 INCREMENT BY 1;
+
+-- =====================================================================
+-- TRIGGERS TO AUTO-FILL IDs
+-- =====================================================================
+
+CREATE OR REPLACE TRIGGER trg_customers_id
+BEFORE INSERT ON customers
+FOR EACH ROW
+BEGIN
+    IF :NEW.customer_id IS NULL THEN
+        SELECT seq_customers.NEXTVAL INTO :NEW.customer_id FROM dual;
+    END IF;
+END;
+/
+
+CREATE OR REPLACE TRIGGER trg_products_id
+BEFORE INSERT ON products
+FOR EACH ROW
+BEGIN
+    IF :NEW.product_id IS NULL THEN
+        SELECT seq_products.NEXTVAL INTO :NEW.product_id FROM dual;
+    END IF;
+END;
+/
+
+CREATE OR REPLACE TRIGGER trg_orders_id
+BEFORE INSERT ON orders
+FOR EACH ROW
+BEGIN
+    IF :NEW.order_id IS NULL THEN
+        SELECT seq_orders.NEXTVAL INTO :NEW.order_id FROM dual;
+    END IF;
+END;
+/
+
+CREATE OR REPLACE TRIGGER trg_order_items_id
+BEFORE INSERT ON order_items
+FOR EACH ROW
+BEGIN
+    IF :NEW.order_item_id IS NULL THEN
+        SELECT seq_order_items.NEXTVAL INTO :NEW.order_item_id FROM dual;
+    END IF;
+END;
+/
+
+-- =====================================================================
+-- INSERT DATA
+-- =====================================================================
+
+-- Customers
+INSERT INTO customers (first_name, last_name, email, city, registration_date)
+VALUES ('John', 'Doe', 'john.doe@email.com', 'New York', TO_DATE('2023-01-15','YYYY-MM-DD'));
+INSERT INTO customers VALUES (NULL, 'Jane', 'Smith', 'jane.smith@email.com', 'Los Angeles', TO_DATE('2023-02-20','YYYY-MM-DD'));
+INSERT INTO customers VALUES (NULL, 'Mike', 'Johnson', 'mike.j@email.com', 'Chicago', TO_DATE('2023-03-10','YYYY-MM-DD'));
+INSERT INTO customers VALUES (NULL, 'Sarah', 'Wilson', 'sarah.w@email.com', 'New York', TO_DATE('2023-01-25','YYYY-MM-DD'));
+INSERT INTO customers VALUES (NULL, 'David', 'Brown', 'david.b@email.com', 'Miami', TO_DATE('2023-04-05','YYYY-MM-DD'));
+INSERT INTO customers VALUES (NULL, 'Emily', 'Davis', 'emily.d@email.com', 'Chicago', TO_DATE('2023-02-28','YYYY-MM-DD'));
+
+-- Products
+INSERT INTO products (product_name, category, price, stock_quantity) VALUES ('iPhone 14', 'Electronics', 999.99, 50);
+INSERT INTO products VALUES (NULL, 'Samsung Galaxy S23', 'Electronics', 849.99, 30);
+INSERT INTO products VALUES (NULL, 'Nike Air Max', 'Footwear', 129.99, 100);
+INSERT INTO products VALUES (NULL, 'Adidas Ultraboost', 'Footwear', 179.99, 75);
+INSERT INTO products VALUES (NULL, 'MacBook Pro', 'Electronics', 1999.99, 20);
+INSERT INTO products VALUES (NULL, 'Levi''s Jeans', 'Clothing', 79.99, 200);
+INSERT INTO products VALUES (NULL, 'Sony Headphones', 'Electronics', 299.99, 40);
+INSERT INTO products VALUES (NULL, 'Cotton T-Shirt', 'Clothing', 24.99, 150);
+
+-- Orders
+INSERT INTO orders (customer_id, order_date, total_amount, status)
+VALUES (1, TO_DATE('2024-01-15','YYYY-MM-DD'), 1299.98, 'Delivered');
+INSERT INTO orders VALUES (NULL, 2, TO_DATE('2024-01-16','YYYY-MM-DD'), 849.99, 'Delivered');
+INSERT INTO orders VALUES (NULL, 3, TO_DATE('2024-01-17','YYYY-MM-DD'), 309.98, 'Processing');
+INSERT INTO orders VALUES (NULL, 1, TO_DATE('2024-01-18','YYYY-MM-DD'), 179.99, 'Delivered');
+INSERT INTO orders VALUES (NULL, 4, TO_DATE('2024-01-19','YYYY-MM-DD'), 2279.97, 'Shipped');
+INSERT INTO orders VALUES (NULL, 5, TO_DATE('2024-01-20','YYYY-MM-DD'), 104.97, 'Delivered');
+INSERT INTO orders VALUES (NULL, 2, TO_DATE('2024-01-21','YYYY-MM-DD'), 1999.99, 'Processing');
+INSERT INTO orders VALUES (NULL, 6, TO_DATE('2024-01-22','YYYY-MM-DD'), 579.96, 'Delivered');
+
+-- Order Items
+INSERT INTO order_items (order_id, product_id, quantity, unit_price) VALUES (1, 1, 1, 999.99);
+INSERT INTO order_items VALUES (NULL, 1, 3, 2, 129.99);
+INSERT INTO order_items VALUES (NULL, 2, 2, 1, 849.99);
+INSERT INTO order_items VALUES (NULL, 3, 6, 2, 79.99);
+INSERT INTO order_items VALUES (NULL, 3, 8, 2, 24.99);
+INSERT INTO order_items VALUES (NULL, 4, 4, 1, 179.99);
+INSERT INTO order_items VALUES (NULL, 5, 5, 1, 1999.99);
+INSERT INTO order_items VALUES (NULL, 5, 7, 1, 299.99);
+INSERT INTO order_items VALUES (NULL, 6, 8, 3, 24.99);
+INSERT INTO order_items VALUES (NULL, 7, 5, 1, 1999.99);
+INSERT INTO order_items VALUES (NULL, 8, 6, 3, 79.99);
+INSERT INTO order_items VALUES (NULL, 8, 8, 6, 24.99);
+
+COMMIT;
+
+-- =====================================================================
+-- END OF FILE
+-- =====================================================================
