@@ -46,6 +46,57 @@ CREATE TABLE mega_hr_base (
     vacation_days_total   NUMBER
 );
 ```
+1nf
+-- Create 1NF compliant tables
+
+-- Main employees table without multi-valued columns
+CREATE TABLE employees_1nf (
+    employee_id           NUMBER PRIMARY KEY,
+    employee_ssn          VARCHAR2(20) UNIQUE NOT NULL,
+    first_name            VARCHAR2(50) NOT NULL,
+    last_name             VARCHAR2(50) NOT NULL,
+    birth_date            DATE,
+    gender                VARCHAR2(10),
+    personal_email        VARCHAR2(100),
+    work_email            VARCHAR2(100),
+    phone_number          VARCHAR2(20),
+    hire_date             DATE NOT NULL,
+    termination_date      DATE,
+    job_id                NUMBER,
+    job_title             VARCHAR2(100),
+    department_id         NUMBER,
+    department_name       VARCHAR2(100),
+    manager_id            NUMBER,
+    manager_name          VARCHAR2(100),
+    salary                NUMBER(10,2),
+    bonus                 NUMBER(10,2),
+    commission_pct        NUMBER(5,2),
+    address_line1         VARCHAR2(200),
+    address_line2         VARCHAR2(200),
+    city                  VARCHAR2(50),
+    state                 VARCHAR2(50),
+    zip_code              VARCHAR2(20),
+    country               VARCHAR2(50),
+    emergency_contact     VARCHAR2(100),
+    emergency_phone       VARCHAR2(20),
+    performance_rating    NUMBER(3,1),
+    vacation_days_used    NUMBER,
+    vacation_days_total   NUMBER
+);
+
+-- Skills table for atomic values
+CREATE TABLE employee_skills_1nf (
+    employee_skill_id NUMBER PRIMARY KEY,
+    employee_id NUMBER NOT NULL,
+    skill_name VARCHAR2(100) NOT NULL
+);
+
+-- Projects table for atomic values  
+CREATE TABLE employee_projects_1nf (
+    employee_project_id NUMBER PRIMARY KEY,
+    employee_id NUMBER NOT NULL,
+    project_id VARCHAR2(10) NOT NULL
+);
 
 ---
 
