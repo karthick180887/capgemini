@@ -1,0 +1,61 @@
+-- Drop tables if they exist
+DROP TABLE hr_employees CASCADE CONSTRAINTS;
+DROP TABLE it_employees CASCADE CONSTRAINTS;
+DROP TABLE sales_employees CASCADE CONSTRAINTS;
+DROP TABLE all_employees CASCADE CONSTRAINTS;
+
+-- Create Employees tables for different departments
+CREATE TABLE hr_employees (
+    emp_id NUMBER,
+    emp_name VARCHAR2(50),
+    department VARCHAR2(50),
+    salary NUMBER
+);
+
+CREATE TABLE it_employees (
+    emp_id NUMBER,
+    emp_name VARCHAR2(50),
+    department VARCHAR2(50),
+    salary NUMBER
+);
+
+CREATE TABLE sales_employees (
+    emp_id NUMBER,
+    emp_name VARCHAR2(50),
+    department VARCHAR2(50),
+    salary NUMBER
+);
+
+CREATE TABLE all_employees (
+    emp_id NUMBER,
+    emp_name VARCHAR2(50),
+    department VARCHAR2(50),
+    salary NUMBER
+);
+
+-- Insert sample data into hr_employees
+INSERT INTO hr_employees VALUES (1, 'John Smith', 'HR', 50000);
+INSERT INTO hr_employees VALUES (2, 'Jane Doe', 'HR', 55000);
+INSERT INTO hr_employees VALUES (3, 'Mike Johnson', 'HR', 60000);
+INSERT INTO hr_employees VALUES (4, 'Sarah Wilson', 'HR', 52000);
+
+-- Insert sample data into it_employees
+INSERT INTO it_employees VALUES (3, 'Mike Johnson', 'IT', 70000);
+INSERT INTO it_employees VALUES (5, 'Tom Brown', 'IT', 75000);
+INSERT INTO it_employees VALUES (6, 'Lisa Davis', 'IT', 65000);
+INSERT INTO it_employees VALUES (7, 'Robert Lee', 'IT', 80000);
+
+-- Insert sample data into sales_employees
+INSERT INTO sales_employees VALUES (1, 'John Smith', 'Sales', 60000);
+INSERT INTO sales_employees VALUES (8, 'Maria Garcia', 'Sales', 58000);
+INSERT INTO sales_employees VALUES (9, 'David Kim', 'Sales', 62000);
+INSERT INTO sales_employees VALUES (10, 'Emily Chen', 'Sales', 59000);
+
+-- Insert sample data into all_employees
+INSERT INTO all_employees VALUES (1, 'John Smith', 'HR', 50000);
+INSERT INTO all_employees VALUES (2, 'Jane Doe', 'HR', 55000);
+INSERT INTO all_employees VALUES (3, 'Mike Johnson', 'IT', 70000);
+INSERT INTO all_employees VALUES (4, 'Sarah Wilson', 'HR', 52000);
+INSERT INTO all_employees VALUES (5, 'Tom Brown', 'IT', 75000);
+
+COMMIT;
