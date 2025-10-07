@@ -1,0 +1,47 @@
+-- Drop old table if exists
+DROP TABLE emp_performance PURGE;
+
+-- Create table (primary key removed, as employees have multiple quarters)
+CREATE TABLE emp_performance (
+    emp_id           NUMBER,
+    emp_name         VARCHAR2(50),
+    department       VARCHAR2(30),
+    salary           NUMBER(10,2),
+    performance_qtr  VARCHAR2(10),
+    score            NUMBER(5,2)
+);
+
+-- Insert sample data
+INSERT INTO emp_performance VALUES (101, 'Amit',    'Sales', 45000, 'Q1', 88);
+INSERT INTO emp_performance VALUES (101, 'Amit',    'Sales', 45000, 'Q2', 90);
+INSERT INTO emp_performance VALUES (102, 'Ravi',    'Sales', 47000, 'Q1', 92);
+INSERT INTO emp_performance VALUES (102, 'Ravi',    'Sales', 47000, 'Q2', 95);
+INSERT INTO emp_performance VALUES (103, 'Meena',   'Sales', 46000, 'Q2', 80);
+INSERT INTO emp_performance VALUES (104, 'Kiran',   'IT',    60000, 'Q1', 90);
+INSERT INTO emp_performance VALUES (104, 'Kiran',   'IT',    60000, 'Q2', 92);
+INSERT INTO emp_performance VALUES (105, 'Priya',   'IT',    58000, 'Q1', 85);
+INSERT INTO emp_performance VALUES (106, 'Manoj',   'IT',    61000, 'Q2', 95);
+INSERT INTO emp_performance VALUES (107, 'Divya',   'HR',    50000, 'Q1', 75);
+INSERT INTO emp_performance VALUES (107, 'Divya',   'HR',    50000, 'Q2', 78);
+INSERT INTO emp_performance VALUES (108, 'Arun',    'HR',    52000, 'Q2', 82);
+INSERT INTO emp_performance VALUES (109, 'Lakshmi', 'HR',    51000, 'Q2', 79);
+INSERT INTO emp_performance VALUES (110, 'Suresh',  'Sales', 49000, 'Q2', 93);
+
+COMMIT;
+
+-- Analytic function: show previous score and change
+SELECT
+    emp_name,
+    department,
+    performance_qtr,
+    score,
+    LAG(score, 1) OVER (
+        PARTITION BY emp_name
+        ORDER BY performance_qtr
+    ) AS prev_score,
+    score - LAG(score, 1) OVER (
+        PARTITION BY emp_name
+        ORDER BY performance_qtr
+    ) AS change_in_score
+FROM emp_performance
+ORDER BY emp_name, performance_qtr;
