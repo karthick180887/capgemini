@@ -1,0 +1,70 @@
+-- Create Titanic passengers table
+CREATE TABLE titanic_passengers (
+    passenger_id NUMBER PRIMARY KEY,
+    survived NUMBER(1),
+    pclass NUMBER(1),
+    name VARCHAR2(100),
+    sex VARCHAR2(10),
+    age NUMBER(5,2),
+    sib_sp NUMBER(2),
+    parch NUMBER(2),
+    ticket VARCHAR2(20),
+    fare NUMBER(8,2),
+    cabin VARCHAR2(10),
+    embarked VARCHAR2(1)
+);
+
+-- Insert sample Titanic data (real dataset values)
+INSERT INTO titanic_passengers VALUES (1, 1, 1, 'Allen, Miss. Elisabeth Walton', 'female', 29, 0, 0, '24160', 211.3375, 'B5', 'S');
+INSERT INTO titanic_passengers VALUES (2, 1, 1, 'Allison, Master. Hudson Trevor', 'male', 0.92, 1, 2, '113781', 151.55, 'C22', 'S');
+INSERT INTO titanic_passengers VALUES (3, 0, 3, 'Andersson, Mr. Anders Johan', 'male', 39, 1, 5, '347082', 31.275, NULL, 'S');
+INSERT INTO titanic_passengers VALUES (4, 0, 3, 'Asplund, Mr. Johan Charles', 'male', 23, 0, 0, '350037', 7.7958, NULL, 'S');
+INSERT INTO titanic_passengers VALUES (5, 1, 1, 'Barkworth, Mr. Algernon Henry Wilson', 'male', 80, 0, 0, '27042', 30, 'A23', 'S');
+INSERT INTO titanic_passengers VALUES (6, 0, 3, 'Carr, Miss. Helen', 'female', 16, 0, 0, '367231', 7.75, NULL, 'Q');
+INSERT INTO titanic_passengers VALUES (7, 1, 2, 'Drew, Mrs. James Vivian', 'female', 34, 1, 1, '28220', 32.5, NULL, 'S');
+INSERT INTO titanic_passengers VALUES (8, 0, 3, 'Emanuel, Miss. Virginia Ethel', 'female', 5, 0, 0, '364516', 12.475, NULL, 'S');
+INSERT INTO titanic_passengers VALUES (9, 1, 1, 'Fortune, Miss. Alice Elizabeth', 'female', 24, 3, 2, '19950', 263, 'C23', 'S');
+INSERT INTO titanic_passengers VALUES (10, 0, 2, 'Giles, Mr. Frederick Edward', 'male', 21, 1, 0, '28134', 11.5, NULL, 'S');
+
+COMMIT;
+
+Task 1: Survival Analysis by Passenger Class
+Task 2: Family Survival Patterns
+==========================================================================================================================================================================
+2. Retail Sales Dataset (Walmart-like data)
+
+-- Create retail sales table
+CREATE TABLE retail_sales (
+    order_id NUMBER PRIMARY KEY,
+    order_date DATE,
+    customer_id NUMBER,
+    product_id NUMBER,
+    product_name VARCHAR2(50),
+    category VARCHAR2(30),
+    subcategory VARCHAR2(30),
+    sales NUMBER(10,2),
+    quantity NUMBER,
+    profit NUMBER(8,2),
+    region VARCHAR2(20),
+    city VARCHAR2(30)
+);
+
+-- Insert sample retail data
+INSERT INTO retail_sales VALUES (1001, DATE '2024-01-15', 201, 1, 'iPhone 14', 'Electronics', 'Smartphones', 999.99, 1, 250.00, 'West', 'Los Angeles');
+INSERT INTO retail_sales VALUES (1002, DATE '2024-01-15', 202, 2, 'Samsung Galaxy', 'Electronics', 'Smartphones', 899.99, 1, 200.00, 'East', 'New York');
+INSERT INTO retail_sales VALUES (1003, DATE '2024-01-16', 203, 3, 'MacBook Pro', 'Electronics', 'Laptops', 2399.99, 1, 600.00, 'West', 'San Francisco');
+INSERT INTO retail_sales VALUES (1004, DATE '2024-01-16', 201, 4, 'AirPods Pro', 'Electronics', 'Accessories', 249.99, 2, 75.00, 'West', 'Los Angeles');
+INSERT INTO retail_sales VALUES (1005, DATE '2024-01-17', 204, 5, 'Gaming Chair', 'Furniture', 'Office Chairs', 299.99, 1, 90.00, 'South', 'Houston');
+INSERT INTO retail_sales VALUES (1006, DATE '2024-01-17', 205, 6, 'Desk Lamp', 'Home Goods', 'Lighting', 49.99, 3, 15.00, 'East', 'Boston');
+INSERT INTO retail_sales VALUES (1007, DATE '2024-01-18', 206, 1, 'iPhone 14', 'Electronics', 'Smartphones', 999.99, 1, 250.00, 'Midwest', 'Chicago');
+INSERT INTO retail_sales VALUES (1008, DATE '2024-01-18', 207, 7, 'Coffee Maker', 'Home Goods', 'Kitchen', 79.99, 1, 20.00, 'West', 'Seattle');
+INSERT INTO retail_sales VALUES (1009, DATE '2024-01-19', 208, 3, 'MacBook Pro', 'Electronics', 'Laptops', 2399.99, 1, 600.00, 'East', 'New York');
+INSERT INTO retail_sales VALUES (1010, DATE '2024-01-19', 209, 8, 'Wireless Mouse', 'Electronics', 'Accessories', 29.99, 5, 9.00, 'South', 'Miami');
+
+COMMIT;
+
+
+Task 3: Customer Behavior Analysis
+Task 4: Sales Performance & Moving Averages
+Task 5: Product Portfolio Analysis
+Task 6: Regional Performance Comparison
