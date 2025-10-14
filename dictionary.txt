@@ -1,0 +1,50 @@
+ecommerce = {
+    "store": "TechShop",
+    "users": {
+        "U001": {
+            "personal_info": {
+                "name": "Alice Johnson",
+                "email": "alice@email.com",
+                "address": {
+                    "street": "123 Main St",
+                    "city": "New York",
+                    "zipcode": "10001"
+                }
+            },
+            "orders": {
+                "ORD001": {
+                    "date": "2024-01-15",
+                    "status": "delivered",
+                    "items": [
+                        {"product": "Laptop", "price": 999.99, "quantity": 1},
+                        {"product": "Mouse", "price": 25.50, "quantity": 2}
+                    ],
+                    "payment": {
+                        "method": "credit_card",
+                        "amount": 1050.99,
+                        "transaction_id": "TXN12345"
+                    }
+                }
+            },
+            "preferences": {
+                "newsletter": True,
+                "categories": ["electronics", "books"]
+            }
+        }
+    },
+    "inventory": {
+        "electronics": {
+            "laptops": {
+                "LP001": {"name": "Gaming Laptop", "stock": 15, "price": 1200},
+                "LP002": {"name": "Business Laptop", "stock": 8, "price": 899}
+            },
+            "accessories": {
+                "AC001": {"name": "Wireless Mouse", "stock": 50, "price": 25}
+            }
+        }
+    }
+}
+
+# Complex access patterns
+user_order_value = ecommerce["users"]["U001"]["orders"]["ORD001"]["payment"]["amount"]
+print(f"Order total: ${user_order_value}")  # Output: Order total: $1050.99
