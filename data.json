@@ -1,0 +1,68 @@
+[
+  {
+    "id": 101,
+    "name": "Alice Johnson",
+    "age": 29,
+    "department": "Finance",
+    "city": "New York",
+    "salary": 68000,
+    "join_date": "2020-02-15",
+    "active": true,
+    "projects": ["Budget2023", "AuditPrep"]
+  },
+  {
+    "id": 102,
+    "name": "Bob Smith",
+    "age": 35,
+    "department": "IT",
+    "city": "London",
+    "salary": 85000,
+    "join_date": "2018-07-22",
+    "active": true,
+    "projects": ["Migration", "SecurityUpgrade"]
+  },
+  {
+    "id": 103,
+    "name": "Charlie Kim",
+    "age": 42,
+    "department": "HR",
+    "city": "Paris",
+    "salary": 72000,
+    "join_date": "2016-11-10",
+    "active": false,
+    "projects": ["Hiring2024"]
+  },
+  {
+    "id": 104,
+    "name": "Diana Patel",
+    "age": 31,
+    "department": "Marketing",
+    "city": "Toronto",
+    "salary": 64000,
+    "join_date": "2019-04-18",
+    "active": true,
+    "projects": ["AdCampaign", "BrandSurvey"]
+  },
+  {
+    "id": 105,
+    "name": "Ethan Lee",
+    "age": 27,
+    "department": "IT",
+    "city": "Singapore",
+    "salary": 76000,
+    "join_date": "2021-06-30",
+    "active": true,
+    "projects": ["CloudShift", "AIIntegration"]
+  },
+  {
+    "id": 106,
+    "name": "Fatima Khan",
+    "age": 38,
+    "department": "Finance",
+    "city": "Dubai",
+    "salary": 91000,
+    "join_date": "2017-03-12",
+    "active": false,
+    "projects": ["InvestmentPlan"]
+  }
+]
